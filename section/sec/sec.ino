@@ -5,34 +5,20 @@ void setup()
 
 void loop()
 {
-  // 센서 2개, a : 소리, b : 진동
   int a = analogRead(A0);
   int b = analogRead(A1);
+  int c = analogRead(A2);
   
-  int sensors[2] = {a, b};
+  int sensors[3] = {a, b, c};
 
-  for(int sensor = 0; sensor<2; sensor++)
+  for(int sensor = 0; sensor<3; sensor++)
   {
-    // 값은 400이상 받아오는게 적당해 보임
-    if(sensors[sensor] > 400)
+    if(sensors[sensor] > 60 || sensors[sensor] == 0)
     {
-      if(sensor==0)
-      {
-        Serial.print("소리 : ");
-        Serial.println(sensors[sensor]);
-        delay(100);
-      }
+        Serial.print(sensors[sensor]);
+        Serial.print(" ");
     }
-    // 차체가 지나갈때 평균적으로 50~60정도 되는것 같다.
-    if(sensors[sensor] > 10)
-    {
-      if(sensor==1)
-      {
-        Serial.print("진동 : ");
-        Serial.println(sensors[sensor]);
-        delay(100);
-      }
-    }
-    
   }
+  Serial.println();
+  delay(100);
 }
