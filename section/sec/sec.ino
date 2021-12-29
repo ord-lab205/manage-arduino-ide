@@ -34,8 +34,6 @@ unsigned int GetPM_Data(unsigned char chrSrc[], byte bytHigh, byte bytLow)
 void setup()
 {
     Serial.begin(115200);
-    pinMode(echoPin, INPUT);
-    pinMode(trigPin, OUTPUT);
     mySerial.begin(9600); 
 }
 
@@ -50,10 +48,9 @@ void loop()
   vib_B = analogRead(A4);
   vib_C = analogRead(A5);
   
-  Serial.print((String) sound_A+" "+sound_B+" "+sound_C);
-  Serial.print("  /  ");
+  Serial.print((String) sound_A+" "+sound_B+" "+sound_C+" ");
   Serial.print((String) vib_A+" "+vib_B+" "+vib_C);
-  Serial.print(" | ");
+  Serial.print(" ");
   
   // 미세먼지 센서
   if (mySerial.available())   {  
@@ -75,20 +72,13 @@ void loop()
       PM01  = GetPM_Data(chrData, PM1_0_ATMOSPHERE_H, PM1_0_ATMOSPHERE_L);  
       PM25  = GetPM_Data(chrData, PM2_5_ATMOSPHERE_H, PM2_5_ATMOSPHERE_L);  
       PM10  = GetPM_Data(chrData, PM10_ATMOSPHERE_H, PM10_ATMOSPHERE_L);  
-      Serial.print("PM1.0=");  
-      Serial.print(PM01);  
-      Serial.print(",PM2.5=");  
-      Serial.print(PM25);  
-      Serial.print(",PM10=");  
+      Serial.print(PM01);
+      Serial.print(" ");
+      Serial.print(PM25);
+      Serial.print(" ");  
       Serial.println(PM10);  
     }  
-      else{  
-        Serial.println("PMS7003  ERROR");  
-      }  
     }   
   }  
-  else{  
-    Serial.println("PMS7003 NOT available");  
-  }
   delay(1000);
 }
