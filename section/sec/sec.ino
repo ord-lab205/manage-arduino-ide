@@ -47,7 +47,7 @@ void loop()
   vib_A = analogRead(A3);
   vib_B = analogRead(A4);
   vib_C = analogRead(A5);
-  
+
   Serial.print((String) sound_A+" "+sound_B+" "+sound_C+" ");
   Serial.print((String) vib_A+" "+vib_B+" "+vib_C);
   Serial.print(" ");
