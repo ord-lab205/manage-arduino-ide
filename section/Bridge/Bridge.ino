@@ -1,6 +1,6 @@
-const int xPin = 0;
-const int yPin = 1;
-const int zPin = 2;
+const int xPin = 2;
+const int yPin = 3;
+const int zPin = 4;
 
 int minVal = 265;
 int maxVal = 402;
@@ -8,6 +8,9 @@ int maxVal = 402;
 double x;
 double y;
 double z;
+
+int sound_A;
+int vib_A;
 
 void setup()
 {
@@ -19,16 +22,11 @@ void loop()
 {
   // 소음 진동 센서
   sound_A = analogRead(A0);
-  sound_B = analogRead(A1);
-  sound_C = analogRead(A2);
   
-  vib_A = analogRead(A3);
-  vib_B = analogRead(A4);
-  vib_C = analogRead(A5);
+  vib_A = analogRead(A1);
   
-  Serial.print((String) sound_A+" "+sound_B+" "+sound_C+" ");
-  Serial.print((String) vib_A+" "+vib_B+" "+vib_C);
-  Serial.print(" ");
+  Serial.print((String) sound_A+" ");
+  Serial.print((String) vib_A+" ");
 
   int xRead = analogRead(xPin);
   int yRead = analogRead(yPin);
@@ -42,9 +40,11 @@ void loop()
   y = RAD_TO_DEG * (atan2(-xAng, -zAng) + PI);
   z = RAD_TO_DEG * (atan2(-yAng, -xAng) + PI);
 
-  Serial.print(x+" ");
-  Serial.print(y+" ");
-  Serial.println(z+" ");
+  Serial.print(x);
+  Serial.print(" ");
+  Serial.print(y);
+  Serial.print(" ");
+  Serial.println(z);
 
   delay(1000);
 }
