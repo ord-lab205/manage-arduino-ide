@@ -27,10 +27,6 @@ void loop()
   vib_B = analogRead(A4);
   vib_C = analogRead(A5);
 
-  Serial.print((String) sound_A + " " + sound_B + " " + sound_C + " ");
-  Serial.print((String) vib_A + " " + vib_B + " " + vib_C);
-  Serial.print(" ");
-
   // 초음파 센서
   long duration, distance;
 
@@ -43,6 +39,10 @@ void loop()
   duration = pulseIn (ECHO, HIGH); //물체에 반사되어돌아온 초음파의 시간을 변수에 저장합니다.
 
   distance = duration * 17 / 1000;
+
+  Serial.print((String) sound_A + " " + sound_B + " " + sound_C + " ");
+  Serial.print((String) vib_A + " " + vib_B + " " + vib_C);
+  Serial.print(" ");
 
   Serial.println(distance); //측정된 물체로부터 거리값(cm값)을 보여줍니다.
   delay(1000); //1초마다 측정값을 보여줍니다.
